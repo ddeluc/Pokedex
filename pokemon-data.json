@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Bulbasaur",
+        "number": 1,
+        "image": "pokemon/1.png"
+    },
+    {
+        "name": "Bulbasaur",
+        "number": 2,
+        "image": "pokemon/1.png"
+    },
+    {
+        "name": "Bulbasaur",
+        "number": 3,
+        "image": "pokemon/1.png"
+    }
+]
