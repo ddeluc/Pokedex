@@ -180,8 +180,35 @@ let input = ""
 
 searchbar.addEventListener("keyup", function(e) {
     input = e.target.value;
-    console.log(input);
+    let test = getpokemon(input);
+    console.log(test);
 });
+
+let getpokemon = function (input) {
+    let validpokemon = []
+
+    if (input == "")
+        return [];
+
+    for (let pokemon in pokemondata)
+    {
+        for (let i = 0; i <= pokemon.length - input.length; i++)
+        {
+            let j = 0;
+            let k = i;
+
+            while (input.toLowerCase().charAt(j) == pokemon.toLowerCase().charAt(k)) {                
+                if ((j == input.length - 1) && (validpokemon.length < 5)) {
+                    validpokemon.push(pokemondata[pokemon])
+                }
+                j++;
+                k++;
+            }                    
+        }
+    }
+
+    return validpokemon;
+}
 
 // Create format for each <li> pokemon item that will be within the <ul>
 let description = function(pokemon) {
