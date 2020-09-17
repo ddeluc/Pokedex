@@ -1,5 +1,8 @@
 import csv, json, os
 
+# This script was copied from the following youtube tutorial:
+# https://www.youtube.com/watch?v=La6ZO8vu-1w&t=185s&ab_channel=ProProgramming101
+
 print(os.getcwd())
 
 csvFilePath = "Lab1-pokemon-data.csv"
