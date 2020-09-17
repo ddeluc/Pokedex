@@ -1,5 +1,14 @@
+/*
+    Pokedex Website Controller
+    SE3316 Lab 1
+
+    Author: Dante De Luca
+    ddeluc@uwo.ca
+*/
+
 "use strict";
 
+// List of first twenty pokemon with relevent data
 let pokemondata = {
     
     "Bulbasaur": {
@@ -164,6 +173,17 @@ let pokemondata = {
     }
 }
 
+let searchbtn = document.getElementById('searchbtn');
+let searchbar = document.getElementById('searchbar');
+
+let input = ""
+
+searchbar.addEventListener("keyup", function(e) {
+    input = e.target.value;
+    console.log(input);
+});
+
+// Create format for each <li> pokemon item that will be within the <ul>
 let description = function(pokemon) {
     return '<li>' + '<img src=./pokemon/' + pokemondata[pokemon]["Number"] + '.png>' + 
     '<div> Name: ' + pokemon + '</div>' +
@@ -172,23 +192,12 @@ let description = function(pokemon) {
     '</li>';
 }
 
- let list = function(pokemondata) {
+// Insert the relevent <li> items
+let list = function(pokemondata) {
     for (let pokemon in pokemondata) {
-        document.getElementById('pokemon').innerHTML += description(pokemon);
+        document.getElementById('pokemonlist').innerHTML += description(pokemon);
     }
 }
 
-console.log(pokemondata["Blastoise"]["Region"])
-
-/* let content = document.getElementById('pokemon');
-let arr = ["bulbasaur", "ivysaur", "venusaur"];
-
-let list = ""
-
-for (let element in arr) {
-    list += "<li>" + arr[element] + "</li>";
-}
-
-content.innerHTML = list; */
-
+// Execute <ul> formatting
 list(pokemondata);
