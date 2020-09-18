@@ -173,17 +173,33 @@ let pokemondata = {
     }
 }
 
-let searchbtn = document.getElementById('searchbtn');
-let searchbar = document.getElementById('searchbar');
+// Declare html element references
+const searchbtn = document.getElementById('search-btn');
+const searchbar = document.getElementById('search-bar');
+const modalcontainer = document.getElementById('modal-container');
+const closebtn = document.getElementById('close'); 
 
-let input = ""
+let input = "";
 
+// Handle events
+// -------------------------------------
 searchbar.addEventListener("keyup", function(e) {
     input = e.target.value;
-    let test = getpokemon(input);
-    console.log(test);
 });
 
+searchbtn.addEventListener("click", function() {
+    let searchedpokemon = getpokemon(input);
+    modalcontainer.classList.add('show');
+    list(searchedpokemon, "modal-body");
+    console.log(searchedpokemon);
+});
+
+closebtn.addEventListener('click', function() {
+    modalcontainer.classList.remove('show');
+});
+// -------------------------------------
+
+// Function that returns an array of all possible matches (up to five)
 let getpokemon = function (input) {
     let validpokemon = []
 
@@ -211,20 +227,20 @@ let getpokemon = function (input) {
 }
 
 // Create format for each <li> pokemon item that will be within the <ul>
-let description = function(pokemon) {
+let description = function(pokemon, pokemondata) {
     return '<li>' + '<img src=./pokemon/' + pokemondata[pokemon]["Number"] + '.png>' + 
-    '<div> Name: ' + pokemon + '</div>' +
+    '<div> Name: ' + pokemondata[pokemon]["Name"] + '</div>' +
     '<div> Number: ' + pokemondata[pokemon]["Number"] + '</div>' +
     '<div> Region: ' + pokemondata[pokemon]["Region"] + '</div>' +
     '</li>';
 }
 
 // Insert the relevent <li> items
-let list = function(pokemondata) {
+let list = function(pokemondata, id) {
     for (let pokemon in pokemondata) {
-        document.getElementById('pokemonlist').innerHTML += description(pokemon);
+        document.getElementById(id).innerHTML += description(pokemon, pokemondata);
     }
 }
 
 // Execute <ul> formatting
-list(pokemondata);
+list(pokemondata, "pokemon-list");
