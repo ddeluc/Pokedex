@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+#pokemon-title {
+    text-align: center;
+}
+
 #pokemon-list li {
     width: 250px;
     min-height: 350px;
@@ -23,6 +27,7 @@
 body > ul {
     width: 80%;
     margin: 0 auto;
+    text-align: center;
 }
 
 .search-bx input {

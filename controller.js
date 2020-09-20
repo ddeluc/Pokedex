@@ -185,6 +185,27 @@ let input = "";
 
 // Handle events
 // -------------------------------------
+
+function validatename(event) {
+    const regex = RegExp('[a-zA-Z]');
+
+    if (!regex.test(event.key)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function validatenumber(event) {
+    const regex = RegExp('[0-9]');
+
+    if (!regex.test(event.key)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 nam_searchbar.addEventListener("keyup", function(e) {
     input = e.target.value;
     console.log(e);
@@ -204,11 +225,15 @@ num_searchbar.addEventListener("keyup", function(e) {
 });
 
 num_searchbtn.addEventListener("click", function() {
-    let searchedpokemon = getpokemon(input, "Number");
-    modalcontainer.classList.add('show');
-    list(searchedpokemon, "modal-body");
-    console.log(searchedpokemon);
-    console.log(input)
+    if (parseInt(input, 10) <= 20) {
+        let searchedpokemon = getpokemon(input, "Number");
+        modalcontainer.classList.add('show');
+        list(searchedpokemon, "modal-body");
+        console.log(searchedpokemon);
+        console.log(input);
+    } else {
+        alert("Invalid Input: Number must be less than or equal to 20.");
+    }
 });
 
 closebtn.addEventListener('click', function() {
@@ -226,19 +251,27 @@ let getpokemon = function (input, field) {
 
     for (let pokemon in pokemondata)
     {
+        let done = false;
+
         for (let i = 0; i <= pokemondata[pokemon][field].length - input.length; i++)
         {
+            if (done)
+                continue;
+
             let j = 0;
             let k = i;
 
             while ((input.toLowerCase().charAt(j) == pokemondata[pokemon][field].toLowerCase().charAt(k)) && (k < pokemondata[pokemon][field].length)) {                
                 if ((j == input.length - 1) && (validpokemon.length < 5)) {
                     validpokemon.push(pokemondata[pokemon])
+                    done = true;
                 }
                 j++;
                 k++;
             }                    
         }
+        if (done)
+            continue;
     }
 
     return validpokemon;

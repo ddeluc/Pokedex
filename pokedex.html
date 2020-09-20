@@ -7,13 +7,17 @@
 <body>
     <!-- Search boxes and buttons -->
     <div class="search-box">
-        <input id="name-search-bar" type="text" placeholder="Search Pokemon By Name">
+        <input id="name-search-bar" type="text" placeholder="Search Pokemon By Name" onkeypress="return validatename(event);">
         <button id="name-search-btn" type="button">Search</button>
     </div>
     <div class="search-box">
-        <input id="number-search-bar" type="text" placeholder="Search Pokemon By Number">
+        <input id="number-search-bar" type="text" placeholder="Search Pokemon By Number" onkeypress="return validatenumber(event);">
         <button id="number-search-btn" type="button">Search</button>
     </div>
+    <!-- Title -->
+    <h1 id="pokemon-title">
+        <img src="./pokemon/title.png">
+    </h1>
     <!-- List of pokemon -->
     <ul id="pokemon-list"></ul>
     <!-- Modal -->
