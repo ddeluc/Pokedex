@@ -5,17 +5,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Search boxes and buttons -->
     <div class="search-box">
-        <input id="search-bar" type="text" placeholder="Search Pokemon By Name">
-        <button id="search-btn" type="button">Search</button>
+        <input id="name-search-bar" type="text" placeholder="Search Pokemon By Name">
+        <button id="name-search-btn" type="button">Search</button>
     </div>
+    <div class="search-box">
+        <input id="number-search-bar" type="text" placeholder="Search Pokemon By Number">
+        <button id="number-search-btn" type="button">Search</button>
+    </div>
+    <!-- List of pokemon -->
     <ul id="pokemon-list"></ul>
+    <!-- Modal -->
     <div class="modal-container" id="modal-container">
         <div class="modal">
-            <h1 id="modal-title">Title Example</h1>
-            <ul id="modal-body">
-                
-            </ul>
+            <h1 id="modal-title">Results</h1>
+            <ul id="modal-body"></ul>
             <button id="close">
                 Close me
             </button>

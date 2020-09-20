@@ -174,46 +174,64 @@ let pokemondata = {
 }
 
 // Declare html element references
-const searchbtn = document.getElementById('search-btn');
-const searchbar = document.getElementById('search-bar');
+const nam_searchbtn = document.getElementById('name-search-btn');
+const nam_searchbar = document.getElementById('name-search-bar');
+const num_searchbtn = document.getElementById('number-search-btn');
+const num_searchbar = document.getElementById('number-search-bar');
 const modalcontainer = document.getElementById('modal-container');
 const closebtn = document.getElementById('close'); 
 
-let input = "";
+let input = ""; 
 
 // Handle events
 // -------------------------------------
-searchbar.addEventListener("keyup", function(e) {
+nam_searchbar.addEventListener("keyup", function(e) {
     input = e.target.value;
+    console.log(e);
 });
 
-searchbtn.addEventListener("click", function() {
-    let searchedpokemon = getpokemon(input);
+nam_searchbtn.addEventListener("click", function() {
+    let searchedpokemon = getpokemon(input, "Name");
     modalcontainer.classList.add('show');
     list(searchedpokemon, "modal-body");
     console.log(searchedpokemon);
+    console.log(input)
+});
+
+num_searchbar.addEventListener("keyup", function(e) {
+    input = e.target.value;
+    console.log(e);
+});
+
+num_searchbtn.addEventListener("click", function() {
+    let searchedpokemon = getpokemon(input, "Number");
+    modalcontainer.classList.add('show');
+    list(searchedpokemon, "modal-body");
+    console.log(searchedpokemon);
+    console.log(input)
 });
 
 closebtn.addEventListener('click', function() {
     modalcontainer.classList.remove('show');
+    document.getElementById('modal-body').innerHTML = "";
 });
 // -------------------------------------
 
 // Function that returns an array of all possible matches (up to five)
-let getpokemon = function (input) {
+let getpokemon = function (input, field) {
     let validpokemon = []
 
-    if (input == "")
+    if ((input == "") || (input.length > 10))
         return [];
 
     for (let pokemon in pokemondata)
     {
-        for (let i = 0; i <= pokemon.length - input.length; i++)
+        for (let i = 0; i <= pokemondata[pokemon][field].length - input.length; i++)
         {
             let j = 0;
             let k = i;
 
-            while (input.toLowerCase().charAt(j) == pokemon.toLowerCase().charAt(k)) {                
+            while ((input.toLowerCase().charAt(j) == pokemondata[pokemon][field].toLowerCase().charAt(k)) && (k < pokemondata[pokemon][field].length)) {                
                 if ((j == input.length - 1) && (validpokemon.length < 5)) {
                     validpokemon.push(pokemondata[pokemon])
                 }

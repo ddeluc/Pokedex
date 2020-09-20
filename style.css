@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-#pokemon li {
+#pokemon-list li {
     width: 250px;
     min-height: 350px;
     border: 1px solid rgb(160, 62, 62);
@@ -11,9 +11,18 @@
     margin: 25px;
 }
 
-ul {
+#modal-body img {
+    width: 25%;
+}
+
+#modal-body li {
+    display: inline-block;
+    list-style-type: none;
+}
+
+body > ul {
     width: 80%;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .search-bx input {
