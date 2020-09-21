@@ -9,7 +9,7 @@
 #pokemon-list li {
     width: 250px;
     min-height: 350px;
-    border: 1px solid rgb(160, 62, 62);
+    border: 3px solid rgb(160, 62, 62);
     list-style-type: none;
     display: inline-block;
     margin: 25px;
@@ -71,4 +71,8 @@ body > ul {
 .modal p {
     font-size: 14px;
     opacity: 0.7;
+}
+
+#references {
+    font-weight: bold;
 }

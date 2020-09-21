@@ -2,6 +2,9 @@
     Pokedex Website Controller
     SE3316 Lab 1
 
+    This script populates the unordered list in the main html and
+    handles the user input from both search bars.
+
     Author: Dante De Luca
     ddeluc@uwo.ca
 */
@@ -173,22 +176,22 @@ let pokemondata = {
     }
 }
 
-// Declare html element references
-const nam_searchbtn = document.getElementById('name-search-btn');
-const nam_searchbar = document.getElementById('name-search-bar');
-const num_searchbtn = document.getElementById('number-search-btn');
-const num_searchbar = document.getElementById('number-search-bar');
-const modalcontainer = document.getElementById('modal-container');
-const closebtn = document.getElementById('close');
+// Declare html element references and other useful constants
+const NAM_SEARCH_BTN = document.getElementById('name-search-btn');
+const NAM_SEARCH_BAR = document.getElementById('name-search-bar');
+const NUM_SEARCH_BTN = document.getElementById('number-search-btn');
+const NUM_SEARCH_BAR = document.getElementById('number-search-bar');
+const MODAL_CONTAINER = document.getElementById('modal-container');
+const CLOSE_BTN = document.getElementById('close');
 const ENTER_KEY_CODE = 13; 
 
 let input = ""; 
-let lastsearch = "";
 
 // Handle events
 // -------------------------------------
 
-function validatename(event) {
+// Ensure the user types only characters when searching by name
+function validateName(event) {
     const regex = RegExp('[a-zA-Z]');
 
     if (!regex.test(event.key)) {
@@ -198,7 +201,8 @@ function validatename(event) {
     }
 }
 
-function validatenumber(event) {
+// Enusure the user types only numbers when searching by number
+function validateNumber(event) {
     const regex = RegExp('[0-9]');
 
     if (!regex.test(event.key)) {
@@ -208,15 +212,17 @@ function validatenumber(event) {
     }
 }
 
-function entername(event) {
+// Function that handles the key "Enter" when searching name
+function enterName(event) {
     if (event.keyCode == ENTER_KEY_CODE) {
         fetch(input, "Name");
     }
 }
 
-function enternumber(event) {
+// Function that handles the key "Enter" when searching number
+function enterNumber(event) {
     if (event.keyCode == ENTER_KEY_CODE) {
-        
+
         if (parseInt(input, 10) <= 20) {
             fetch(input, "Number");
         } else {
@@ -226,22 +232,22 @@ function enternumber(event) {
 }
 
 // Handling name search
-nam_searchbar.addEventListener("keyup", function(e) {
+NAM_SEARCH_BAR.addEventListener("keyup", function(e) {
     input = e.target.value;
     console.log(e);
 });
 
-nam_searchbtn.addEventListener("click", function() {
+NAM_SEARCH_BTN.addEventListener("click", function() {
     fetch(input, "Name");
 });
 
 // Handling number search
-num_searchbar.addEventListener("keyup", function(e) {
+NUM_SEARCH_BAR.addEventListener("keyup", function(e) {
     input = e.target.value;
     console.log(e);
 });
 
-num_searchbtn.addEventListener("click", function() {
+NUM_SEARCH_BTN.addEventListener("click", function() {
     if (parseInt(input, 10) <= 20) {
         fetch(input, "Number");
     } else {
@@ -249,14 +255,15 @@ num_searchbtn.addEventListener("click", function() {
     }
 });
 
-closebtn.addEventListener('click', function() {
-    modalcontainer.classList.remove('show');
+// Function that closes modal upon clicking the "Close Me" button
+CLOSE_BTN.addEventListener('click', function() {
+    MODAL_CONTAINER.classList.remove('show');
     document.getElementById('modal-body').innerHTML = "";
 });
 // -------------------------------------
 
 // Function that returns an array of all possible matches (up to five)
-let getpokemon = function (input, field) {
+let getPokemon = function (input, field) {
     let validpokemon = []
 
     if ((input == "") || (input.length > 10))
@@ -290,9 +297,10 @@ let getpokemon = function (input, field) {
     return validpokemon;
 }
 
+// Function that creates the list of valid pokemon
 let fetch = function(input, field) {
-    let searchedpokemon = getpokemon(input, field);
-    modalcontainer.classList.add('show');
+    let searchedpokemon = getPokemon(input, field);
+    MODAL_CONTAINER.classList.add('show');
     list(searchedpokemon, "modal-body");
     console.log(searchedpokemon);
     console.log(input)

@@ -7,19 +7,22 @@
 <body>
     <!-- Search boxes and buttons -->
     <div class="search-box">
-        <input id="name-search-bar" type="text" placeholder="Search Pokemon By Name" onkeypress="return validatename(event);" onkeyup="return entername(event);">
+        <input id="name-search-bar" type="text" placeholder="Search By Name" onkeypress="return validateName(event);" onkeyup="return enterName(event);" maxlength="20">
         <button id="name-search-btn" type="button">Search</button>
     </div>
     <div class="search-box">
-        <input id="number-search-bar" type="text" placeholder="Search Pokemon By Number" onkeypress="return validatenumber(event);" onkeyup="return enternumber(event);">
+        <input id="number-search-bar" type="text" placeholder="Search By Number" onkeypress="return validateNumber(event);" onkeyup="return enterNumber(event);">
         <button id="number-search-btn" type="button">Search</button>
     </div>
+
     <!-- Title -->
     <h1 id="pokemon-title">
         <img src="./pokemon/title.png">
     </h1>
+
     <!-- List of pokemon -->
     <ul id="pokemon-list"></ul>
+
     <!-- Modal -->
     <div class="modal-container" id="modal-container">
         <div class="modal">
@@ -30,6 +33,17 @@
             </button>
         </div>
     </div>
+
+    <!-- References -->
+    <p>
+        <div id="references">References:</div>
+        <div>
+            <a href="https://www.kaggle.com/kvpratama/pokemon-images-dataset">https://www.kaggle.com/kvpratama/pokemon-images-dataset</a>
+        </div>
+        <div>
+            <a href="https://www.reddit.com/r/TheSilphRoad/comments/7p952h/pokemon_go_pokedex_spreadsheet/">https://www.reddit.com/r/TheSilphRoad/comments/7p952h/pokemon_go_pokedex_spreadsheet/</a>
+        </div>        
+    </p>
     <script type="text/javascript" src="controller.js"></script>
 </body>
 </html>
