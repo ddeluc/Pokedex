@@ -7,11 +7,11 @@
 <body>
     <!-- Search boxes and buttons -->
     <div class="search-box">
-        <input id="name-search-bar" type="text" placeholder="Search Pokemon By Name" onkeypress="return validatename(event);">
+        <input id="name-search-bar" type="text" placeholder="Search Pokemon By Name" onkeypress="return validatename(event);" onkeyup="return entername(event);">
         <button id="name-search-btn" type="button">Search</button>
     </div>
     <div class="search-box">
-        <input id="number-search-bar" type="text" placeholder="Search Pokemon By Number" onkeypress="return validatenumber(event);">
+        <input id="number-search-bar" type="text" placeholder="Search Pokemon By Number" onkeypress="return validatenumber(event);" onkeyup="return enternumber(event);">
         <button id="number-search-btn" type="button">Search</button>
     </div>
     <!-- Title -->

@@ -179,9 +179,11 @@ const nam_searchbar = document.getElementById('name-search-bar');
 const num_searchbtn = document.getElementById('number-search-btn');
 const num_searchbar = document.getElementById('number-search-bar');
 const modalcontainer = document.getElementById('modal-container');
-const closebtn = document.getElementById('close'); 
+const closebtn = document.getElementById('close');
+const ENTER_KEY_CODE = 13; 
 
 let input = ""; 
+let lastsearch = "";
 
 // Handle events
 // -------------------------------------
@@ -206,19 +208,34 @@ function validatenumber(event) {
     }
 }
 
+function entername(event) {
+    if (event.keyCode == ENTER_KEY_CODE) {
+        fetch(input, "Name");
+    }
+}
+
+function enternumber(event) {
+    if (event.keyCode == ENTER_KEY_CODE) {
+        
+        if (parseInt(input, 10) <= 20) {
+            fetch(input, "Number");
+        } else {
+            alert("Invalid Input: Number must be less than or equal to 20.");
+        }
+    }
+}
+
+// Handling name search
 nam_searchbar.addEventListener("keyup", function(e) {
     input = e.target.value;
     console.log(e);
 });
 
 nam_searchbtn.addEventListener("click", function() {
-    let searchedpokemon = getpokemon(input, "Name");
-    modalcontainer.classList.add('show');
-    list(searchedpokemon, "modal-body");
-    console.log(searchedpokemon);
-    console.log(input)
+    fetch(input, "Name");
 });
 
+// Handling number search
 num_searchbar.addEventListener("keyup", function(e) {
     input = e.target.value;
     console.log(e);
@@ -226,11 +243,7 @@ num_searchbar.addEventListener("keyup", function(e) {
 
 num_searchbtn.addEventListener("click", function() {
     if (parseInt(input, 10) <= 20) {
-        let searchedpokemon = getpokemon(input, "Number");
-        modalcontainer.classList.add('show');
-        list(searchedpokemon, "modal-body");
-        console.log(searchedpokemon);
-        console.log(input);
+        fetch(input, "Number");
     } else {
         alert("Invalid Input: Number must be less than or equal to 20.");
     }
@@ -275,6 +288,14 @@ let getpokemon = function (input, field) {
     }
 
     return validpokemon;
+}
+
+let fetch = function(input, field) {
+    let searchedpokemon = getpokemon(input, field);
+    modalcontainer.classList.add('show');
+    list(searchedpokemon, "modal-body");
+    console.log(searchedpokemon);
+    console.log(input)
 }
 
 // Create format for each <li> pokemon item that will be within the <ul>
