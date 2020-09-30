@@ -306,19 +306,27 @@ let fetch = function(input, field) {
     console.log(input)
 }
 
+let description = function(pokemon, pokemondata, id) {
+    let listelement = document.getElementById(id).appendChild(document.createElement('li'));
+    listelement.appendChild(document.createElement('img')).setAttribute('src', './pokemon/' + pokemondata[pokemon]["Number"] + '.png');
+    listelement.appendChild(document.createElement('div')).textContent = 'Name: ' + pokemondata[pokemon]["Name"];
+    listelement.appendChild(document.createElement('div')).textContent = 'Number: ' + pokemondata[pokemon]["Number"];
+    listelement.appendChild(document.createElement('div')).textContent = 'Region: ' + pokemondata[pokemon]["Region"];
+}
+
 // Create format for each <li> pokemon item that will be within the <ul>
-let description = function(pokemon, pokemondata) {
-    return '<li>' + '<img src=./pokemon/' + pokemondata[pokemon]["Number"] + '.png>' + 
+/* let description = function(pokemon, pokemondata) {
+    return '<li>' + '<img src=./pokemon/' + >' + 
     '<div> Name: ' + pokemondata[pokemon]["Name"] + '</div>' +
     '<div> Number: ' + pokemondata[pokemon]["Number"] + '</div>' +
     '<div> Region: ' + pokemondata[pokemon]["Region"] + '</div>' +
     '</li>';
-}
+} */
 
 // Insert the relevent <li> items
 let list = function(pokemondata, id) {
     for (let pokemon in pokemondata) {
-        document.getElementById(id).innerHTML += description(pokemon, pokemondata);
+        description(pokemon, pokemondata, id);
     }
 }
 
