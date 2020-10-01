@@ -234,7 +234,14 @@ function enterNumber(event) {
 // Handling name search
 NAM_SEARCH_BAR.addEventListener("keyup", function(e) {
     input = e.target.value;
+    let body = document.getElementById('body');
     console.log(e);
+
+    /* if (input != "") {
+        body.appendChild(document.createElement('div')).textContent = "test";
+    } else {
+
+    } */
 });
 
 NAM_SEARCH_BTN.addEventListener("click", function() {
@@ -306,6 +313,7 @@ let fetch = function(input, field) {
     console.log(input)
 }
 
+// Create format for each <li> pokemon item that will be within the <ul>
 let description = function(pokemon, pokemondata, id) {
     let listelement = document.getElementById(id).appendChild(document.createElement('li'));
     listelement.appendChild(document.createElement('img')).setAttribute('src', './pokemon/' + pokemondata[pokemon]["Number"] + '.png');
@@ -313,15 +321,6 @@ let description = function(pokemon, pokemondata, id) {
     listelement.appendChild(document.createElement('div')).textContent = 'Number: ' + pokemondata[pokemon]["Number"];
     listelement.appendChild(document.createElement('div')).textContent = 'Region: ' + pokemondata[pokemon]["Region"];
 }
-
-// Create format for each <li> pokemon item that will be within the <ul>
-/* let description = function(pokemon, pokemondata) {
-    return '<li>' + '<img src=./pokemon/' + >' + 
-    '<div> Name: ' + pokemondata[pokemon]["Name"] + '</div>' +
-    '<div> Number: ' + pokemondata[pokemon]["Number"] + '</div>' +
-    '<div> Region: ' + pokemondata[pokemon]["Region"] + '</div>' +
-    '</li>';
-} */
 
 // Insert the relevent <li> items
 let list = function(pokemondata, id) {
@@ -332,3 +331,4 @@ let list = function(pokemondata, id) {
 
 // Execute <ul> formatting
 list(pokemondata, "pokemon-list");
+
