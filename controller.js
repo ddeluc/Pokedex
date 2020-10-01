@@ -187,12 +187,16 @@ const CLOSE_BTN = document.getElementById('close');
 const ENTER_KEY_CODE = 13; 
 
 let input = ""; 
+
+// create searchdiv element to dynamically add the search results
 let searchdiv = document.createElement('div');
 searchdiv.setAttribute('id', 'search-div');
 
+// create the searchdiv list element where the li elements will be added dynamically
 let searchdivlist = document.createElement('ul');
 searchdivlist.setAttribute('id', 'search-div-list');
 
+// add the searchdivlist to the searchdiv
 searchdiv.appendChild(searchdivlist);
 
 // Handle events
@@ -244,14 +248,25 @@ NAM_SEARCH_BAR.addEventListener("keyup", function(e) {
     input = e.target.value;            
     console.log(e);
 
+    // if keyboard input exists, spawn the div to dynamically add pokemon
     if (input != "") {
+
+        // if the searchdiv does not exist in the body, add it to the body
         if (BODY.children[3] != searchdiv) {
             BODY.insertBefore(searchdiv, BODY.children[3]);
         }        
+
+        // clear the searchdivlist before the next search
         clearElement(searchdivlist);
+
+        // get the array of valid pokemon
         let generatedpokemon = getPokemon(input, "Name", 20);
+
+        // list the pokemon in the searchdivlist
         list(generatedpokemon, "search-div-list");       
     } else {
+
+        // if the searchdiv exits, remove it
         if (BODY.children[3] == searchdiv) {
             BODY.removeChild(BODY.children[3]);
         }
@@ -267,6 +282,7 @@ NUM_SEARCH_BAR.addEventListener("keyup", function(e) {
     input = e.target.value;
     console.log(e);
 
+    // repeat the same process from the Name search, but for the Number as well
     if (input != "") {
         if (BODY.children[3] != searchdiv) {
             BODY.insertBefore(searchdiv, BODY.children[3]);
