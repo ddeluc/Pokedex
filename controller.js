@@ -187,7 +187,13 @@ const CLOSE_BTN = document.getElementById('close');
 const ENTER_KEY_CODE = 13; 
 
 let input = ""; 
-let searchdiv = document.createElement('div');;
+let searchdiv = document.createElement('div');
+searchdiv.setAttribute('id', 'search-div');
+
+let searchdivlist = document.createElement('ul');
+searchdivlist.setAttribute('id', 'search-div-list');
+
+searchdiv.appendChild(searchdivlist);
 
 // Handle events
 // -------------------------------------
@@ -242,7 +248,9 @@ NAM_SEARCH_BAR.addEventListener("keyup", function(e) {
         if (BODY.children[3] != searchdiv) {
             BODY.insertBefore(searchdiv, BODY.children[3]);
         }        
-        searchdiv.textContent = "test";        
+        clearElement(searchdivlist);
+        let generatedpokemon = getPokemon(input, "Name", true);
+        list(generatedpokemon, "search-div-list");       
     } else {
         if (BODY.children[3] == searchdiv) {
             BODY.removeChild(BODY.children[3]);
@@ -326,6 +334,12 @@ let description = function(pokemon, pokemondata, id) {
     listelement.appendChild(document.createElement('div')).textContent = 'Name: ' + pokemondata[pokemon]["Name"];
     listelement.appendChild(document.createElement('div')).textContent = 'Number: ' + pokemondata[pokemon]["Number"];
     listelement.appendChild(document.createElement('div')).textContent = 'Region: ' + pokemondata[pokemon]["Region"];
+}
+
+let clearElement = function(element) {
+    while (element.lastElementChild) {
+        element.removeChild(element.lastElementChild);
+    }
 }
 
 // Insert the relevent <li> items
