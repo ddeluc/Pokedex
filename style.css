@@ -15,6 +15,23 @@
     margin: 25px;
 }
 
+#search-div {
+    background-color: lightgreen
+}
+
+#search-div-list li {
+    width: 200px;
+    min-height: 200px;
+    list-style-type: none;
+    display: inline-block;
+    margin: 25px;
+}
+
+#search-div-list li img {
+    max-width: 60%;
+    height: auto;
+}
+
 #modal-body img {
     width: 25%;
 }

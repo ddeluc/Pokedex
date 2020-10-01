@@ -249,7 +249,7 @@ NAM_SEARCH_BAR.addEventListener("keyup", function(e) {
             BODY.insertBefore(searchdiv, BODY.children[3]);
         }        
         clearElement(searchdivlist);
-        let generatedpokemon = getPokemon(input, "Name", true);
+        let generatedpokemon = getPokemon(input, "Name", 20);
         list(generatedpokemon, "search-div-list");       
     } else {
         if (BODY.children[3] == searchdiv) {
@@ -272,7 +272,7 @@ NUM_SEARCH_BAR.addEventListener("keyup", function(e) {
             BODY.insertBefore(searchdiv, BODY.children[3]);
         }        
         clearElement(searchdivlist);
-        let generatedpokemon = getPokemon(input, "Number", true);
+        let generatedpokemon = getPokemon(input, "Number", 20);
         list(generatedpokemon, "search-div-list");       
     } else {
         if (BODY.children[3] == searchdiv) {
@@ -297,7 +297,7 @@ CLOSE_BTN.addEventListener('click', function() {
 // -------------------------------------
 
 // Function that returns an array of all possible matches (up to five)
-let getPokemon = function (input, field, popup) {
+let getPokemon = function (input, field, limit) {
     let validpokemon = []
 
     if ((input == "") || (input.length > 10))
@@ -316,7 +316,7 @@ let getPokemon = function (input, field, popup) {
             let k = i;
 
             while ((input.toLowerCase().charAt(j) == pokemondata[pokemon][field].toLowerCase().charAt(k)) && (k < pokemondata[pokemon][field].length)) {                
-                if ((j == input.length - 1) && (validpokemon.length < 5 && popup)) {
+                if ((j == input.length - 1) && (validpokemon.length < limit)) {
                     validpokemon.push(pokemondata[pokemon])
                     done = true;
                 }
@@ -333,7 +333,7 @@ let getPokemon = function (input, field, popup) {
 
 // Function that creates the list of valid pokemon
 let fetch = function(input, field) {
-    let searchedpokemon = getPokemon(input, field, true);
+    let searchedpokemon = getPokemon(input, field, 5);
     MODAL_CONTAINER.classList.add('show');
     list(searchedpokemon, "modal-body");
     console.log(searchedpokemon);
