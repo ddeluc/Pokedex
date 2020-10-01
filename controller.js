@@ -347,7 +347,10 @@ let description = function(pokemon, pokemondata, id) {
     listelement.appendChild(document.createElement('div')).textContent = 'Name: ' + pokemondata[pokemon]["Name"];
     listelement.appendChild(document.createElement('div')).textContent = 'Number: ' + pokemondata[pokemon]["Number"];
     listelement.appendChild(document.createElement('div')).textContent = 'Region: ' + pokemondata[pokemon]["Region"];
+
+    listelement.children[0].setAttribute('alt', pokemondata[pokemon]["Name"]);
 }
+
 
 let clearElement = function(element) {
     while (element.lastElementChild) {
