@@ -266,6 +266,19 @@ NAM_SEARCH_BTN.addEventListener("click", function() {
 NUM_SEARCH_BAR.addEventListener("keyup", function(e) {
     input = e.target.value;
     console.log(e);
+
+    if (input != "") {
+        if (BODY.children[3] != searchdiv) {
+            BODY.insertBefore(searchdiv, BODY.children[3]);
+        }        
+        clearElement(searchdivlist);
+        let generatedpokemon = getPokemon(input, "Number", true);
+        list(generatedpokemon, "search-div-list");       
+    } else {
+        if (BODY.children[3] == searchdiv) {
+            BODY.removeChild(BODY.children[3]);
+        }
+    }
 });
 
 NUM_SEARCH_BTN.addEventListener("click", function() {
