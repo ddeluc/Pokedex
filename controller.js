@@ -182,10 +182,12 @@ const NAM_SEARCH_BAR = document.getElementById('name-search-bar');
 const NUM_SEARCH_BTN = document.getElementById('number-search-btn');
 const NUM_SEARCH_BAR = document.getElementById('number-search-bar');
 const MODAL_CONTAINER = document.getElementById('modal-container');
+const BODY = document.getElementById('body');
 const CLOSE_BTN = document.getElementById('close');
 const ENTER_KEY_CODE = 13; 
 
 let input = ""; 
+let searchdiv = document.createElement('div');;
 
 // Handle events
 // -------------------------------------
@@ -233,15 +235,19 @@ function enterNumber(event) {
 
 // Handling name search
 NAM_SEARCH_BAR.addEventListener("keyup", function(e) {
-    input = e.target.value;
-    let body = document.getElementById('body');
+    input = e.target.value;            
     console.log(e);
 
-    /* if (input != "") {
-        body.appendChild(document.createElement('div')).textContent = "test";
+    if (input != "") {
+        if (BODY.children[3] != searchdiv) {
+            BODY.insertBefore(searchdiv, BODY.children[3]);
+        }        
+        searchdiv.textContent = "test";        
     } else {
-
-    } */
+        if (BODY.children[3] == searchdiv) {
+            BODY.removeChild(BODY.children[3]);
+        }
+    }
 });
 
 NAM_SEARCH_BTN.addEventListener("click", function() {
@@ -270,7 +276,7 @@ CLOSE_BTN.addEventListener('click', function() {
 // -------------------------------------
 
 // Function that returns an array of all possible matches (up to five)
-let getPokemon = function (input, field) {
+let getPokemon = function (input, field, popup) {
     let validpokemon = []
 
     if ((input == "") || (input.length > 10))
@@ -289,7 +295,7 @@ let getPokemon = function (input, field) {
             let k = i;
 
             while ((input.toLowerCase().charAt(j) == pokemondata[pokemon][field].toLowerCase().charAt(k)) && (k < pokemondata[pokemon][field].length)) {                
-                if ((j == input.length - 1) && (validpokemon.length < 5)) {
+                if ((j == input.length - 1) && (validpokemon.length < 5 && popup)) {
                     validpokemon.push(pokemondata[pokemon])
                     done = true;
                 }
@@ -306,7 +312,7 @@ let getPokemon = function (input, field) {
 
 // Function that creates the list of valid pokemon
 let fetch = function(input, field) {
-    let searchedpokemon = getPokemon(input, field);
+    let searchedpokemon = getPokemon(input, field, true);
     MODAL_CONTAINER.classList.add('show');
     list(searchedpokemon, "modal-body");
     console.log(searchedpokemon);
